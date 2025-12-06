@@ -15,8 +15,7 @@ public class sugan {
 	    String value =  driver.findElement(By.xpath("//span [@id='nseindex']")).getText();
 	    System.out.println(value);
 	    driver.switchTo().defaultContent();
-	    driver.findElement(By.xpath("//li[@class='news']")).click();  
-	   	    
-	    
+	    driver.findElement(By.xpath("//li[@class='news']")).click();  	    
 	}
 }
+//frames are embading one html page with another html page
