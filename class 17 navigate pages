@@ -1,0 +1,33 @@
+package sugan;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Navigatepage {
+    public static void main(String args[]) throws InterruptedException {
+
+        System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+        ChromeDriver driver = new ChromeDriver();
+
+        driver.get("https://letcode.in/button");
+
+        String url = driver.getCurrentUrl();
+        System.out.println("Button page url: " + url);
+        Thread.sleep(3000);
+        driver.navigate().back();
+        driver.navigate().forward();
+        driver.findElement(By.className("button")).click();
+
+
+        String homeURL = driver.getCurrentUrl();
+        System.out.println("Home page url: " + homeURL);
+        
+        
+        driver.navigate().back();
+        System.out.println("returns to current page"+ driver.getCurrentUrl());
+    
+        driver.navigate().refresh();
+         driver.navigate().to ("https://letcode.in/test-practice");
+    }
+}
