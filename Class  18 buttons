@@ -1,0 +1,48 @@
+package sugan;
+
+import java.awt.Dimension;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.Rectangle;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.Dimension; 
+
+public class Handlingbuttons{
+    public static void main(String args[]){
+
+        System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("https://letcode.in/button");
+
+        
+//      // 1. Button Position (X,Y)
+        WebElement ele = driver.findElement(By.id("position"));  // ✅ By.id()
+        Point point = ele.getLocation();
+        int x = point.getX();
+        int y = point.getY();
+        System.out.println("X => " + x + " Y => " + y);  // ✅ lowercase x
+        
+        // 2. Button Color
+        WebElement btnColor = driver.findElement(By.id("color"));
+        String color = btnColor.getCssValue("background-color");  // ✅ CSS property
+        System.out.println("Button Color: " + color);
+        
+        // 3. Button Size (Width/Height)
+        Rectangle rect = driver.findElement(By.id("property")).getRect();
+        System.out.println("Width: " + rect.getWidth());
+        System.out.println("Height: " + rect.getHeight());
+        
+        Dimension dime = rect.getDimension();
+        System.out.println("Dimension: " + dime);
+        System.out.println("Dimension Width: " + dime.getWidth());
+        System.out.println("Dimension Height: " + dime.getHeight());
+        
+        // 4. Check if button is disabled
+        boolean isDisabled = driver.findElement(By.id("isDisabled")).isEnabled();
+        System.out.println("Is Disabled: " + !isDisabled);  // ✅ ! for true disabled
+        
+        driver.quit();
+    }
+}
