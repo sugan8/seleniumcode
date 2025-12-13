@@ -1,0 +1,28 @@
+// the below code doesnot worked
+package sugan;
+
+import java.io.File;  
+import org.apache.commons.io.FileUtils; 
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;  
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager; 
+
+
+public class Screenshot {
+	public static void main(String args[]) throws Exception {
+		   System.setProperty("webdriver.chrome.driver","./driver/chromedriver.exe");
+					ChromeDriver driver = new  ChromeDriver();
+					driver.get("https://letcode.in/button");
+					File firstSrc = driver.getScreenshotAs(OutputType.FILE);
+					File dest = new File ("./snaps/img.png"); 
+					FileHandler.copy(firstSrc,dest);
+					WebElement ele = driver.findElement(By.id("home"));
+				    File eleSrc = ele.getScreenshotAs(OutputType.FILE);
+				    File eledst = new File ("./snaps/img.png"); 
+				    FileHandler.copy(eleSrc,eledst);
+			
+					driver.quit();
+	}
+}
