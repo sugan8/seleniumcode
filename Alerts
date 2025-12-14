@@ -1,0 +1,29 @@
+package sugan;
+
+import org.openqa.selenium.Alert;  // ✅ Import Alert interface
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Alerts {
+    public static void main(String[] args) throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("https://www.leafground.com/alert.xhtml");
+        
+        // Click alert button
+        WebElement alertBox = driver.findElement(By.xpath("//*[@id='j_idt88:j_idt91']/span[2]"));
+        alertBox.click();
+        
+        // ✅ Alert (interface) - NOT Alerts (class)
+        Alert alert = driver.switchTo().alert();  // ✅ Fixed!
+        
+        // Handle alert
+        System.out.println("Alert Text: " + alert.getText());
+        alert.accept();  // Click OK
+        
+//        driver.quit();
+    }
+}
